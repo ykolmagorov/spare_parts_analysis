@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Environment / secrets
+.env
+*.env
+
+# Local databases
+catalog.db
+
+# Large XML/data files
+articles.xml
+new_articles.xml
+
+# macOS
+.DS_Store
+
+# other files
+import_lite.py
+upload_test.py
+get_yandex_token.py
+main.py
