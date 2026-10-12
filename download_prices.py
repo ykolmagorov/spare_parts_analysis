@@ -12,4 +12,3 @@ def get_price_mikado(url):
 
 #print(df.head())
 #print(df.shape)
-# Test Git
