@@ -21,3 +21,14 @@ import_lite.py
 upload_test.py
 get_yandex_token.py
 main.py
+
+# Python virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+
+# Temporary and log files
+*.log
