@@ -1,9 +1,21 @@
 import re
 from download_email_prices import get_price_profit
 from download_prices import get_price_mikado
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
+
+mikado_key = os.getenv("MIKADO_API_KEY")
+
+if not mikado_key:
+    raise RuntimeError("Не найден MIKADO_API_KEY в файле .env")
+
+mikado = get_price_mikado(
+    "https://polomkam.net/api/Price/GetPriceExcel"
+    f"?StockId=92&Key={mikado_key}"
+)
 pr_lg = get_price_profit()
-mikado = get_price_mikado('https://polomkam.net/api/Price/GetPriceExcel?StockId=92&Key=E0162337-649E-42A7-B547-6A818BDD3055')
 
 '''print(mikado.head())
 print(pr_lg.head())
@@ -27,7 +39,8 @@ def load_price_profit(pr_lg, price_list):
         brand = dt['Номенклатура.Производитель']
         oem = normalize_oem(dt['Артикул'])
         key = (brand.upper().strip(),oem)
-        price = int(dt['Цена'])
+        price = int(float(str(dt['Цена']).replace(',', '.')))
+        #price = int(dt['Цена'])
 
         if price >2000:
             price = round(price*1.23,-1)
